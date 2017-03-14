@@ -1,6 +1,8 @@
 
 void setup() {  
-  /*Enter code from instruction sheet here*/
+  Serial.begin(9600);
+  while(!Serial){}
+  Serial.println("Hello World");
 }
 
 void loop() { }

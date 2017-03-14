@@ -8,7 +8,7 @@ void setup() {
 void loop() { 
   if(Serial.available() > 0 ){   
     String message = serialMessage();
-    /*enter code that prints message to serial port*/
+    Serial.println(message);
   }
 }
 
