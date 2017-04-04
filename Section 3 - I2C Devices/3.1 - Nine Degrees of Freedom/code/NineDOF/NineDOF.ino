@@ -20,12 +20,11 @@ void setup() {
 }
 
 void loop(){
-  Serial.println("Loop");
   printGyro();  
   printAccel(); 
   printMag();   
   Serial.println();  
-  delay(250);
+  delay(500);
 }
 
 void printGyro(){ 

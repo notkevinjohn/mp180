@@ -22,7 +22,6 @@ void setup() {
   Serial.begin(9600);
   while(!Serial){}
   Serial.println("Starting 7 Segment");
-  pinMode(A1, OUTPUT);
   int lenDisp = sizeof(displays)/sizeof(int);  
   for(int i = 0; i< lenDisp; i++){
     int pin = displays[i];   
@@ -39,17 +38,11 @@ void setup() {
 }
 
 void loop() {   
-   int i = analogRead(A0);
-   if(i<200){     
-      digitalWrite(A1, HIGH);  
-   }
-   else{
-    digitalWrite(A1, LOW);  
-   }
+  for(int i = 999; i>0; i--){
    int ones = i%10;
    int tens = i%100/10;
    int hunds = i/100;
-   int thous = 0;    
+   int thous = 0; 
 
    for(int j =0; j<10; j++){
     numberToDisplay(ones,d4); 
@@ -57,8 +50,8 @@ void loop() {
     numberToDisplay(hunds,d2); 
     numberToDisplay(thous,d1);
    } 
-  
- 
+  }
+  while(true){}
 }
 void numberToDisplay(int num, int disp)
 {
