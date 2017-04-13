@@ -17,17 +17,18 @@ int C = 2;
 int P = 4;
 int segments[] = {A,G,D,F,E,B,C,P};
 
-
 void setup() { 
   Serial.begin(9600);
   while(!Serial){}
   Serial.println("Starting 7 Segment");
+  
   int lenDisp = sizeof(displays)/sizeof(int);  
   for(int i = 0; i< lenDisp; i++){
     int pin = displays[i];   
     pinMode(pin, OUTPUT);  
     digitalWrite(pin, HIGH); 
   }
+  
   int lenSeg = sizeof(segments)/sizeof(int);  
   for(int i=0; i< lenSeg; i++){
     int pin = segments[i];   
@@ -50,6 +51,7 @@ void loop() {
     numberToDisplay(hunds,d2); 
     numberToDisplay(thous,d1);
    } 
+   
   }
   while(true){}
 }
