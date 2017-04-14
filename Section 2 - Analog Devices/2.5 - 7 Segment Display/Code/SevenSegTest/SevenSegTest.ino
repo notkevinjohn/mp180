@@ -30,8 +30,7 @@ void setup() {
     int pin = segments[i];   
     pinMode(pin, OUTPUT);   
     digitalWrite(pin, LOW); 
-  }
-  
+  }  
 }
 
 void loop() { 

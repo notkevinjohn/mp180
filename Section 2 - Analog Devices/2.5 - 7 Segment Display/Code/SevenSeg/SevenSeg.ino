@@ -44,7 +44,7 @@ void loop() {
       digitalWrite(A1, HIGH);  
    }
    else{
-    digitalWrite(A1, LOW``);  
+    digitalWrite(A1, LOW);  
    }
    int ones = i%10;
    int tens = i%100/10;

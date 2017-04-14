@@ -4,11 +4,12 @@ SevenSeg sevenSeg;
 void setup() { 
   Serial.begin(9600);
   while(!Serial){}
-  Serial.println("Starting 7 Segment");
+  Serial.println("Starting 7 Segment"); 
+  sevenSeg.setup(); 
 }
 
 void loop() {   
-  sevenSeg.numberToDisplay(1,sevenSeg.d1());
- 
+ int num = random(9999);
+ sevenSeg.display(num, 2000);
 }
 
