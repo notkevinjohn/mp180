@@ -62,13 +62,7 @@ void SevenSeg::display(int num, int time = 10)
    int hunds = num / 100 % 10;
    int thous = num / 1000 % 10; 
 
-   Serial.println(num);
-   Serial.println(ones);
-   Serial.println(tens);
-   Serial.println(hunds);
-   Serial.println(thous);
-
-  	for(int j = 0; j<time; j++) {
+   	for(int j = 0; j<time; j++) {
 	    numberToDisplay(ones,d4); 
 	    numberToDisplay(tens,d3);
 	    numberToDisplay(hunds,d2); 

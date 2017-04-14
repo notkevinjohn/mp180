@@ -39,11 +39,11 @@ void setup() {
 }
 
 void loop() {   
-  for(int i = 999; i>0; i--){
-   int ones = i%10;
-   int tens = i%100/10;
-   int hunds = i/100;
-   int thous = 0; 
+  for(int i = 1200; i>0; i--){
+   int ones  = i % 10;
+   int tens  = i / 10 % 10;
+   int hunds = i / 100 % 10;
+   int thous = i / 1000 % 10; 
 
    for(int j =0; j<10; j++){
     numberToDisplay(ones,d4); 
