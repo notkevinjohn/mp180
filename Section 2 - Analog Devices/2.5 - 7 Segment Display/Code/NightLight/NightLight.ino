@@ -22,27 +22,41 @@ void setup() {
   Serial.begin(9600);
   while(!Serial){}
   Serial.println("Starting 7 Segment");
-  pinMode(A1, OUTPUT);
   int lenDisp = sizeof(displays)/sizeof(int);  
   for(int i = 0; i< lenDisp; i++){
     int pin = displays[i];   
     pinMode(pin, OUTPUT);  
-    digitalWrite(pin, HIGH); 
+    digitalWrite(pin, HIGH);    
   }
   int lenSeg = sizeof(segments)/sizeof(int);  
   for(int i=0; i< lenSeg; i++){
     int pin = segments[i];   
     pinMode(pin, OUTPUT);   
     digitalWrite(pin, LOW); 
-  }
-  
+  }  
 }
 
-void loop() {
-    numberToDisplay(1,d4); 
-    numberToDisplay(2,d3);
-    numberToDisplay(3,d2); 
-    numberToDisplay(4,d1);
+void loop() {   
+   int i = analogRead(A0);
+   if(i<200){     
+      digitalWrite(A1, HIGH);  
+   }
+   else{
+    digitalWrite(A1, LOW);  
+   }
+   int ones = i%10;
+   int tens = i%100/10;
+   int hunds = i/100;
+   int thous = 0;    
+
+   for(int j =0; j<10; j++){
+    numberToDisplay(ones,d4); 
+    numberToDisplay(tens,d3);
+    numberToDisplay(hunds,d2); 
+    numberToDisplay(thous,d1);
+   } 
+  
+ 
 }
 void numberToDisplay(int num, int disp)
 {
@@ -54,11 +68,48 @@ void numberToDisplay(int num, int disp)
 }
 void displayNumber(int i)
 {
+  
   switch(i){
-    case 1: one(); break;
-    case 2: two(); break;
-    case 3: three(); break;
-    case 4: four(); break;    
+    case 0:
+    zero();
+    break;
+    
+    case 1:
+    one();
+    break;
+
+    case 2:
+    two();
+    break;
+
+    case 3:
+    three();
+    break;
+
+    case 4:
+    four();
+    break;
+
+    case 5:
+    five();
+    break;
+
+    case 6:
+    six();
+    break;
+
+    case 7:
+    seven();
+    break;
+
+    case 8:
+    eight();
+    break;
+
+    case 9:
+    nine();
+    break;
+    
   }
 }
 void zero(){
