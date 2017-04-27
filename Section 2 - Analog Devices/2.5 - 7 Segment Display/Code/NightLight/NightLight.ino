@@ -25,7 +25,8 @@ void setup() {
   int lenDisp = sizeof(displays)/sizeof(int);  
   for(int i = 0; i< lenDisp; i++){
     int pin = displays[i];   
-    pinMode(pin, OUTPUT);  
+    pinMode(pin, OUTPUT);
+    pinMode(A1, OUTPUT);  
     digitalWrite(pin, HIGH);    
   }
   int lenSeg = sizeof(segments)/sizeof(int);  
@@ -38,7 +39,7 @@ void setup() {
 
 void loop() {   
    int i = analogRead(A0);
-   if(i<200){     
+   if(i<400){     
       digitalWrite(A1, HIGH);  
    }
    else{
