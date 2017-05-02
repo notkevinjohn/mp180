@@ -1,10 +1,7 @@
 #include <SevenSeg.h>
 SevenSeg sevenSeg;
 
-void setup() { 
-  Serial.begin(9600);
-  while(!Serial){}
-  Serial.println("Starting 7 Segment"); 
+void setup() {   
   sevenSeg.setup(); 
 }
 
