@@ -11,12 +11,13 @@ void setup() {
   Serial.println("Starting 9DOF");
   NineDoF.settings.device.commInterface = IMU_MODE_I2C;
   NineDoF.settings.device.mAddress = MAG_ADDRESS;
-  NineDoF.settings.device.agAddress = AG_ADDRESS;
+  NineDoF.settings.device.agAddress = AG_ADDRESS; 
+  
   if (!NineDoF.begin())
   {
     Serial.println("Failed to communicate with 9DOF.");
     while (1);
-  }
+  }   
 }
 
 void loop(){
@@ -32,13 +33,11 @@ void printGyro(){
   double gyroX = NineDoF.calcGyro(NineDoF.gx);
   double gyroY = NineDoF.calcGyro(NineDoF.gy);
   double gyroZ = NineDoF.calcGyro(NineDoF.gz);
+
+  double gyroMn = pow(pow(gyroX,2) + pow(gyroY,2) + pow(gyroZ,2),0.5);
        
   Serial.print("G: ");    
-  Serial.print(gyroX, 2);
-  Serial.print(", ");
-  Serial.print(gyroY, 2);
-  Serial.print(", ");
-  Serial.print(gyroZ, 2);
+  Serial.print(gyroMn,2);
   Serial.println(" deg/s");  
 }
 
@@ -47,13 +46,10 @@ void printAccel(){
   double accelX = NineDoF.calcAccel(NineDoF.ax);
   double accelY = NineDoF.calcAccel(NineDoF.ay);
   double accelZ = NineDoF.calcAccel(NineDoF.az);
-  
+
+  double accelMn = pow(pow(accelX,2) + pow(accelY,2) + pow(accelZ,2),0.5);
   Serial.print("A: ");
-  Serial.print(accelX, 2);
-  Serial.print(", ");
-  Serial.print(accelY, 2);
-  Serial.print(", ");
-  Serial.print(accelZ, 2);
+  Serial.print(accelMn, 2); 
   Serial.println(" g");
   
 }

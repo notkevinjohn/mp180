@@ -11,12 +11,12 @@ LSM9DS1 NineDoF;
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
 
-
 void setup() {    
   NineDoF.settings.device.commInterface = IMU_MODE_I2C;
   NineDoF.settings.device.mAddress = MAG_ADDRESS;
   NineDoF.settings.device.agAddress = AG_ADDRESS;  
   NineDoF.begin();  
+  NineDoF.setAccelScale(16);
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.clearDisplay();
   display.setTextSize(1);
@@ -42,31 +42,30 @@ void loop(){
 void printGyro(){ 
   NineDoF.readGyro();   
   display.print("G: ");    
-  display.print(NineDoF.calcGyro(NineDoF.gx), 2);
+  display.print(NineDoF.calcGyro(NineDoF.gx), 1);
   display.print(", ");
-  display.print(NineDoF.calcGyro(NineDoF.gy), 2);
+  display.print(NineDoF.calcGyro(NineDoF.gy), 1);
   display.print(", ");
-  display.println(NineDoF.calcGyro(NineDoF.gz), 2);
+  display.println(NineDoF.calcGyro(NineDoF.gz), 1);
 }
 
 void printAccel(){
-  NineDoF.readAccel();  
+  NineDoF.readAccel();   
   display.print("A: ");
-  display.print(NineDoF.calcAccel(NineDoF.ax), 2);
+  display.print(NineDoF.calcAccel(NineDoF.ax), 1);
   display.print(", ");
-  display.print(NineDoF.calcAccel(NineDoF.ay), 2);
+  display.print(NineDoF.calcAccel(NineDoF.ay), 1);
   display.print(", ");
-  display.println(NineDoF.calcAccel(NineDoF.az), 2);
-  
+  display.println(NineDoF.calcAccel(NineDoF.az), 1);  
 }
 
 void printMag(){
   NineDoF.readMag();
   display.print("M: ");
-  display.print(NineDoF.calcMag(NineDoF.mx), 2);
+  display.print(NineDoF.calcMag(NineDoF.mx), 1);
   display.print(", ");
-  display.print(NineDoF.calcMag(NineDoF.my), 2);
+  display.print(NineDoF.calcMag(NineDoF.my), 1);
   display.print(", ");
-  display.println(NineDoF.calcMag(NineDoF.mz), 2);
+  display.println(NineDoF.calcMag(NineDoF.mz), 1);
 }
 
