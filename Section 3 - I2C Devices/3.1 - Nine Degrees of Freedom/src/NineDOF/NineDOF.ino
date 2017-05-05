@@ -3,7 +3,7 @@
 #include <SparkFunLSM9DS1.h>
 
 LSM9DS1 NineDoF;
-#define MAG_ADDRESS	0x1E 
+#define MAG_ADDRESS 0x1E 
 #define AG_ADDRESS 0x6B 
 
 void setup() {  
@@ -34,11 +34,11 @@ void printGyro(){
   double gyroZ = NineDoF.calcGyro(NineDoF.gz);
        
   Serial.print("G: ");    
-  Serial.print(gyroX, 2);
+  Serial.print(gyroX);
   Serial.print(", ");
-  Serial.print(gyroY, 2);
+  Serial.print(gyroY);
   Serial.print(", ");
-  Serial.print(gyroZ, 2);
+  Serial.print(gyroZ);
   Serial.println(" deg/s");  
 }
 
@@ -49,11 +49,11 @@ void printAccel(){
   double accelZ = NineDoF.calcAccel(NineDoF.az);
   
   Serial.print("A: ");
-  Serial.print(accelX, 2);
+  Serial.print(accelX);
   Serial.print(", ");
-  Serial.print(accelY, 2);
+  Serial.print(accelY);
   Serial.print(", ");
-  Serial.print(accelZ, 2);
+  Serial.print(accelZ);
   Serial.println(" g");
   
 }
@@ -65,11 +65,11 @@ void printMag(){
   double magZ = NineDoF.calcMag(NineDoF.mz);
   
   Serial.print("M: ");
-  Serial.print(magX, 2);
+  Serial.print(magX);
   Serial.print(", ");
-  Serial.print(magY, 2);
+  Serial.print(magY);
   Serial.print(", ");
-  Serial.print(magZ, 2);
+  Serial.print(magZ);
   Serial.println(" gauss");
 }
 
