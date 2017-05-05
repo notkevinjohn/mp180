@@ -1,11 +1,11 @@
 
 #include <Wire.h>
 #include <Adafruit_SSD1306.h>
-
+int address = 0x3C;
 Adafruit_SSD1306 display(0);
 
 void setup() {    
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);   
+  display.begin(address);   
   display.setTextColor(WHITE);
   display.display(); 
   delay(3000);
