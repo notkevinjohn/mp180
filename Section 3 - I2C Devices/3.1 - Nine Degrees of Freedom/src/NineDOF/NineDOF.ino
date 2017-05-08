@@ -3,20 +3,22 @@
 #include <SparkFunLSM9DS1.h>
 
 LSM9DS1 NineDoF;
-#define MAG_ADDRESS 0x1E 
-#define AG_ADDRESS 0x6B 
+int MAG_ADDRESS = 0x1E;
+int AG_ADDRESS = 0x6B;
 
 void setup() {  
   Serial.begin(9600);
-  Serial.println("Starting 9DOF");
+  Serial.println("Initializing 9DoF...");
   NineDoF.settings.device.commInterface = IMU_MODE_I2C;
   NineDoF.settings.device.mAddress = MAG_ADDRESS;
   NineDoF.settings.device.agAddress = AG_ADDRESS;
   if (!NineDoF.begin())
   {
-    Serial.println("Failed to communicate with 9DOF.");
+    Serial.println("9DoF Failed or Not Present");
     while (1);
   }
+   Serial.println("...9DoF Initialized");
+   Serial.println();
 }
 
 void loop(){

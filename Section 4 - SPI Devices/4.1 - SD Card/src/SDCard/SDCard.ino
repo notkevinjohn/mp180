@@ -13,18 +13,12 @@ void setup() {
   }
   Serial.println("card initialized.");
 }
-
-void loop() {
-  
+ 
+void loop() {  
   File dataFile = SD.open("myFile.txt", FILE_WRITE);
-  String dataString = "Hello World";
-  if (dataFile) {
-    dataFile.println(dataString);
-    dataFile.close();   
-    Serial.println(dataString);
-  } 
-  else {
-    Serial.println("error opening file");
-  }
-  delay(100);
+  String dataString = "Hello World";  
+  dataFile.println(dataString);
+  dataFile.close();   
+  Serial.println(dataString); 
+  delay(1000);
 }

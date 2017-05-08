@@ -1,0 +1,27 @@
+<pre>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SPI</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SD</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+
+<font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">chipSelect</font> <font color="#434f54">=</font> <font color="#000000">10</font><font color="#000000">;</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font> 
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Initializing SD card...&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ 
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#434f54">!</font><b><font color="#d35400">SD</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">chipSelect</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Card failed, or not present&#34;</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">while</font><font color="#000000">(</font><font color="#000000">1</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;card initialized.&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+ 
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font> &nbsp;
+ &nbsp;<font color="#d35400">File</font> <font color="#000000">dataFile</font> <font color="#434f54">=</font> <b><font color="#d35400">SD</font></b><font color="#434f54">.</font><font color="#d35400">open</font><font color="#000000">(</font><font color="#005c5f">&#34;myFile.txt&#34;</font><font color="#434f54">,</font> <font color="#00979c">FILE_WRITE</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">String</font> <font color="#000000">dataString</font> <font color="#434f54">=</font> <font color="#005c5f">&#34;Hello World&#34;</font><font color="#000000">;</font> &nbsp;
+ &nbsp;<font color="#000000">dataFile</font><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">dataString</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">dataFile</font><font color="#434f54">.</font><font color="#d35400">close</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;&nbsp;
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">dataString</font><font color="#000000">)</font><font color="#000000">;</font> 
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">1000</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+</pre>

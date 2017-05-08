@@ -1,0 +1,81 @@
+
+<pre>
+
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SparkFunLSM9DS1</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+
+<b><font color="#d35400">LSM9DS1</font></b> <font color="#000000">NineDoF</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">MAG_ADDRESS</font> <font color="#434f54">=</font> <font color="#000000">0x1E</font><font color="#000000">;</font>
+<font color="#00979c">int</font> <font color="#000000">AG_ADDRESS</font> <font color="#434f54">=</font> <font color="#000000">0x6B</font><font color="#000000">;</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font> &nbsp;
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Initializing 9DoF...&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">settings</font><font color="#434f54">.</font><font color="#d35400">device</font><font color="#434f54">.</font><font color="#d35400">commInterface</font> <font color="#434f54">=</font> <font color="#00979c">IMU_MODE_I2C</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">settings</font><font color="#434f54">.</font><font color="#d35400">device</font><font color="#434f54">.</font><font color="#d35400">mAddress</font> <font color="#434f54">=</font> <font color="#000000">MAG_ADDRESS</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">settings</font><font color="#434f54">.</font><font color="#d35400">device</font><font color="#434f54">.</font><font color="#d35400">agAddress</font> <font color="#434f54">=</font> <font color="#000000">AG_ADDRESS</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#434f54">!</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font>
+ &nbsp;<font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;9DoF Failed or Not Present&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">while</font> <font color="#000000">(</font><font color="#000000">1</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;...9DoF Initialized&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">{</font>
+ &nbsp;<font color="#000000">printGyro</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;
+ &nbsp;<font color="#000000">printAccel</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font> 
+ &nbsp;<font color="#000000">printMag</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;&nbsp;
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;
+ &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">printGyro</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">{</font> 
+ &nbsp;<font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">readGyro</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font> 
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">gyroX</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcGyro</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">gx</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">gyroY</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcGyro</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">gy</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">gyroZ</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcGyro</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">gz</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;G: &#34;</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">gyroX</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;, &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">gyroY</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;, &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">gyroZ</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34; deg&#47;s&#34;</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">printAccel</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">{</font>
+ &nbsp;<font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">readAccel</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font> &nbsp;
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">accelX</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcAccel</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">ax</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">accelY</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcAccel</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">ay</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">accelZ</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcAccel</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">az</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;A: &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">accelX</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;, &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">accelY</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;, &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">accelZ</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34; g&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#000000">printMag</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">{</font>
+ &nbsp;<font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">readMag</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">magX</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcMag</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">mx</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">magY</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcMag</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">my</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">double</font> <font color="#000000">magZ</font> <font color="#434f54">=</font> <font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">calcMag</font><font color="#000000">(</font><font color="#000000">NineDoF</font><font color="#434f54">.</font><font color="#d35400">mz</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;M: &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">magX</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;, &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">magY</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;, &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">magZ</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34; gauss&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+
+</pre>

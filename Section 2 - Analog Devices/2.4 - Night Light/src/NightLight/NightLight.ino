@@ -1,13 +1,14 @@
 
 void setup() { }
 
+int threshold = 150;
+
 void loop() {
   int light = readLightSensor();   
-  if(light>150){
+  if(light > threshold){
     ledOff();
   }
-  else
-  {
+  else{
     ledOn();
   }  
 }
