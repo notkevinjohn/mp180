@@ -4,9 +4,6 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 
-int _SCK  = 13;
-int _MISO = 12;
-int _MOSI = 11;
 int BME_CS = 9;
 int SD_CS = 10;
 
