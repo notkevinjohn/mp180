@@ -9,10 +9,9 @@ void loop() {
  int sum = AddInts(num1, num2); 
  String message = String(num1) + "+" + String(num2) + "=" + String(sum);  
  Serial.println(message); 
- delay(1000); 
+ delay(5000); 
 }
 
 int AddInts (int num1, int num2){
-  return num1 + num2;
+  return 10;
 }
-

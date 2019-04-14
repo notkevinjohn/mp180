@@ -1,17 +1,8 @@
 
 void setup() { }
 
-int threshold = 150;
 
-void loop() {
-  int light = readLightSensor();   
-  if(light > threshold){
-    ledOff();
-  }
-  else{
-    ledOn();
-  }  
-}
+void loop() { }
 
 int readLightSensor(){
   return analogRead(5);
@@ -26,4 +17,3 @@ void ledOn(){
 void ledOff(){
   digitalWrite(ledPin, LOW);
 }
-

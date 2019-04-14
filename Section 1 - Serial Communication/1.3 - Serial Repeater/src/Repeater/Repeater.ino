@@ -2,7 +2,7 @@
 void setup() {  
   Serial.begin(9600);
   while (!Serial) {}
-  Serial.println("Staring Serial Repeater");
+  Serial.println("Starting Serial Repeater");
 }
 
 void loop() { 
@@ -20,6 +20,3 @@ String serialMessage(){
     }
     return message;
 }
-
-
-
