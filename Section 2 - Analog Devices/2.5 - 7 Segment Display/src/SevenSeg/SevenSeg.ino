@@ -15,14 +15,14 @@ int E = 6;
 int B = 7;
 int C = 2;
 int P = 4;
-int segments[] = {A,G,D,F,E,B,C,P};
+int segments[] = {A,G,D,F,E,B,C};
 
 
 void setup() { 
   Serial.begin(9600);
   while(!Serial){}
   Serial.println("Starting 7 Segment");
-  pinMode(A1, OUTPUT);
+  //pinMode(A1, OUTPUT);
   int lenDisp = sizeof(displays)/sizeof(int);  
   for(int i = 0; i< lenDisp; i++){
     int pin = displays[i];   
@@ -31,18 +31,19 @@ void setup() {
   }
   int lenSeg = sizeof(segments)/sizeof(int);  
   for(int i=0; i< lenSeg; i++){
-    int pin = segments[i];   
+    int pin = segments[i];  
+    Serial.println(pin); 
     pinMode(pin, OUTPUT);   
-    digitalWrite(pin, LOW); 
+    digitalWrite(pin, HIGH); 
   }
   
 }
 
 void loop() {
-    numberToDisplay(1,d4); 
+    numberToDisplay(1,d1); 
     numberToDisplay(2,d3);
     numberToDisplay(3,d2); 
-    numberToDisplay(4,d1);
+    numberToDisplay(4,d4);
 }
 void numberToDisplay(int num, int disp)
 {
@@ -147,6 +148,3 @@ void clearSegments(){
     digitalWrite(pin, LOW); 
   }
 }
-
-
-
