@@ -34,7 +34,7 @@ void setup() {
     int pin = segments[i];  
     Serial.println(pin); 
     pinMode(pin, OUTPUT);   
-    digitalWrite(pin, HIGH); 
+    digitalWrite(pin, LOW); 
   }
   
 }

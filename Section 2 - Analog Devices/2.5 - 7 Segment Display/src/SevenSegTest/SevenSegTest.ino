@@ -4,7 +4,7 @@ int d1 = 11;
 int d2 = 10;
 int d3 = 9;
 int d4 = 3;
-int displays[] = {d1,d2,d3,d4};
+int displays[] = {d1,d3,d2,d4};
 
 //7 seg selectors
 int A = 12;
@@ -48,5 +48,3 @@ void loop() {
      digitalWrite(seg, LOW); 
   }
 }
-
-
